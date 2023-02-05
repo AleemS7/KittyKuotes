@@ -1,12 +1,11 @@
 const quoteContainer = document.querySelector(".quote-container");
 const quoteText = document.querySelector("#quote");
-const authorText = document.querySelector("#author");
 
 async function getQuote() {
-  const response = await fetch("https://api.quotable.io/random");
+  const response = await fetch("https://uplifting-quotes-api.herokuapp.com/api");
   const data = await response.json();
-  quoteText.innerText = data.content;
-  authorText.innerText = data.author;
+  const quote = data.quote;
+  quoteText.innerText = quote;
 }
 
 async function getBackground() {
