@@ -13,7 +13,7 @@ async function getQuote() {
 
 async function getCat() {
   const catResponse = await fetch(
-    `https://api.thecatapi.com/v1/images/search?api_key=YOUR-API-KEY`
+    `https://api.thecatapi.com/v1/images/search?api_key=live_WZ4717FjTnIVTn29CGC4ARXy2t0VRqlzQGYsvmgS47LJqV3PaNhKoMZQRNhTL7Rk`
   );
   const catJson = await catResponse.json();
 
