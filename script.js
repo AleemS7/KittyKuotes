@@ -1,20 +1,18 @@
-const quoteContainer = document.querySelector(".quote-container");
-const quoteText = document.querySelector("#quote");
-const authorText = document.querySelector("#author");
+const btn = document.querySelector('#btn');
+const quoteEl = document.querySelector('#quote');
+const apiKey = live_WZ4717FjTnIVTn29CGC4ARXy2t0VRqlzQGYsvmgS47LJqV3PaNhKoMZQRNhTL7Rk;
 
-async function getQuote() {
-  const response = await fetch("https://api.quotable.io/random");
-  const data = await response.json();
-  quoteText.innerText = data.content;
-  authorText.innerText = data.author;
-}
+btn.addEventListener('click', () => {
+  fetch('https://api.quotable.io/random')
+    .then(response => response.json())
+    .then(data => {
+      quoteEl.innerText = data.content;
+    });
 
-async function getBackground() {
-  const response = await fetch("https://api.thecatapi.com/v1/images/search?size=full&api_key=live_WZ4717FjTnIVTn29CGC4ARXy2t0VRqlzQGYsvmgS47LJqV3PaNhKoMZQRNhTL7Rk"); 
-  const data = await response.json();
-  const imageUrl = data[0].url;
-  document.body.style.backgroundImage = `url(${imageUrl})`;
-}
+  fetch(`https://thecatapi.com/api/images/get?format=src&type=gif&api_key=${apiKey}`)
+    .then(response => response.url)
+    .then(url => {
+      document.body.style.backgroundImage = `url(${url})`;
+    });
+});
 
-getQuote();
-getBackground();
