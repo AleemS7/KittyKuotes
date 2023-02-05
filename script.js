@@ -1,33 +1,30 @@
-// Your API key for TheCatAPI
-const API_KEY = "live_WZ4717FjTnIVTn29CGC4ARXy2t0VRqlzQGYsvmgS47LJqV3PaNhKoMZQRNhTL7Rk";
+const quoteText = document.querySelector("#text");
+const quoteAuthor = document.querySelector("#author");
+const newQuoteButton = document.querySelector("#new-quote");
+const body = document.querySelector("body");
 
-// Function to get a random cat image
-async function getCatImage() {
-  const response = await fetch(`https://api.thecatapi.com/v1/images/search?api_key=${API_KEY}`);
-  const data = await response.json();
-  return data[0].url;
-}
-
-// Function to get a random uplifting quote
 async function getQuote() {
-  const response = await fetch("https://api.quotable.io/random");
-  const data = await response.json();
-  return data.content;
+  const quoteResponse = await fetch("https://api.quotable.io/random");
+  const quoteJson = await quoteResponse.json();
+
+  quoteText.textContent = quoteJson.content;
+  quoteAuthor.textContent = quoteJson.author;
 }
 
-// Button click event to change the quote and cat image
-document.querySelector("button").addEventListener("click", async function() {
-  const catImage = await getCatImage();
-  document.querySelector(".cat-image").src = catImage;
-  document.querySelector(".quote").textContent = await getQuote();
+async function getCat() {
+  const catResponse = await fetch(
+    `https://api.thecatapi.com/v1/images/search?api_key=YOUR-API-KEY`
+  );
+  const catJson = await catResponse.json();
+
+  body.style.backgroundImage = `url(${catJson[0].url})`;
+}
+
+newQuoteButton.addEventListener("click", () => {
+  getQuote();
+  getCat();
 });
 
-// Initial call on page load
-getCatImage().then(catImage => {
-  document.querySelector(".cat-image").src = catImage;
-});
-
-getQuote().then(quote => {
-  document.querySelector(".quote").textContent = quote;
-});
+getQuote();
+getCat();
 
