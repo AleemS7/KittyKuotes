@@ -9,17 +9,45 @@ body {
     align-items: center;
   }
   
-  .quote-container {
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    width: 50%;
+  .container {
+    width: 100%;
+    background-color: aliceblue;
+    padding: 50px 40px;
+    box-shadow: 0 20px 65px gray;
+    position: relative;
+    border-radius: 8px;
   }
-  
-  #quote {
-    font-size: 36px;
-    margin-bottom: 20px;
+
+  .container p {
+    color: pink;
+    line-height: 2;
+    font-size: 18px;
+  }
+
+  .container h3 {
+    color: white     
+  }
+
+  .container p{
+    color: pink;
+    line-height: 2;
+    font-size: 18px;
+  }
+
+  .container h3 {
+    color: white;
+    margin: auto;
+    font-weight: 600;
+    text-transform: capitalize; 
+  }
+
+  .container button {
+    background-color: white;
+    border: none;
+    padding: 15px 45px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 600;
     color: black;
+    cursor: pointer;
   }
-  

@@ -1,12 +1,23 @@
 const quoteContainer = document.querySelector(".quote-container");
 const quoteText = document.querySelector("#quote");
 
-async function getQuote() {
-  const response = await fetch("https://uplifting-quotes-api.herokuapp.com/api");
-  const data = await response.json();
-  const quote = data.quote;
-  quoteText.innerText = quote;
-}
+let quote = document.getElementById("quote");
+let author = document.getElementById("author");
+let btn = document.getElementById("btn");
+
+const url = "https://api.quotable.io/random";
+
+let getQuote = () => {
+  fetch(url)
+    .then((data) => data.json())
+    .then((item) => {
+      quote.innertext= item.content;
+      author.innerText = item.author;
+    });
+};
+
+window.addEventListener("load", getQuote);
+btn.addEventListener("click", getQuote);
 
 async function getBackground() {
   const response = await fetch("https://api.thecatapi.com/v1/images/search?size=full&api_key=live_WZ4717FjTnIVTn29CGC4ARXy2t0VRqlzQGYsvmgS47LJqV3PaNhKoMZQRNhTL7Rk"); 
@@ -15,5 +26,4 @@ async function getBackground() {
   document.body.style.backgroundImage = `url(${imageUrl})`;
 }
 
-getQuote();
 getBackground();
